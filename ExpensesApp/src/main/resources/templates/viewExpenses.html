@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenses</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Expenses List</h1>
+        <table class="table table-hover" id="table">
+            <tr>
+                <th>Where</th>
+                <th>What</th>
+                <th>HowMany</th>
+                <th>Price</th>
+                <th>Expense management</th>
+            </tr>
+            <tr th:each="expense : ${expenses}">
+                <td th:text="${expense.where}"></td>
+                <td th:text="${expense.what}"></td>
+                <td th:text="${expense.howMany}"></td>
+                <td th:text="${expense.price}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{'/updateExpense/' + ${expense.expenseId}}" >Edit</a>
+                    <a class="btn btn-danger" th:href="@{'/deleteExpense/' + ${expense.expenseId}}" >Delete</a>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Total expenses <span id="val"></span> lei </h3><br>
+
+
+        <a class="btn btn-primary" th:href="@{'/addExpense'}" >Add expense</a>
+    </div>
+
+</body>
+
+<script>
+
+    let table = document.getElementById("table"), sumVal = 0;
+
+    for(let i = 1; i < table.rows.length; i++)
+    {
+       let tr = document.getElementsByTagName("tr")[i];
+       sumVal =sumVal + parseFloat(tr.getElementsByTagName("td")[3].innerHTML);
+    }
+
+    document.getElementById("val").innerHTML = sumVal;
+    console.log(sumVal);
+
+
+</script>
+</html>
+

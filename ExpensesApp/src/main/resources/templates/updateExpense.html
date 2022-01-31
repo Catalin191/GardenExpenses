@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AddExpense</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<form  class="container" action="#" th:action="@{/updateExpense}" th:object="${expense}" method="post">
+
+
+    <input type="hidden" th:field="*{expenseId}">
+    <div class="form-group">
+        <label>Where</label>
+        <input class="form-control" type="text" id="username" th:name="where" th:field="*{where}" placeholder="Where">
+        <span class="error" th:if="${#fields.hasErrors('where')}" th:each="err:${#fields.errors('where')}" th:text="${err}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>What</label>
+        <input class="form-control" type="text" id="what" th:name="what" th:field="*{what}" placeholder="What">
+        <span class="error" th:if="${#fields.hasErrors('what')}" th:each="err:${#fields.errors('what')}" th:text="${err}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" type="text" id="price"th:name="price" th:field="*{price}" placeholder="24.5">
+        <span class="error" th:if="${#fields.hasErrors('price')}" th:each="err:${#fields.errors('price')}" th:text="${err}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>HowMany</label>
+        <input class="form-control" type="text" id="howMany" th:name="why" th:field="*{howMany}" placeholder="HowMany">
+        <span class="error" th:if="${#fields.hasErrors('howMany')}" th:each="err:${#fields.errors('howMany')}" th:text="${err}"></span>
+    </div>
+
+    <input class="btn btn-primary mt-2" type="submit">
+    <a class="btn btn-outline-danger mt-2" href="/expenses">Cancel</a>
+</form>
+</body>
+</html>
